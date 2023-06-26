@@ -1,6 +1,10 @@
-Que características deve ter um bom projeto de software?
-1. Quais são os principais objetivos da engenharia de requisitos?
+Uma empresa desenvolveu um novo software para a gestão de seus processos. Sabendo que o software ainda apresenta algumas falhas, a empresa contrata um especialista em engenharia de software para avaliar o seu funcionamento e propor melhorias.
 
-2. Como a engenharia de requisitos pode ajudar na qualidade do software?
+Qual a probabilidade de que o especialista proponha melhorias em pelo menos 50% dos processos da empresa?
+1) Na geometria, os pontos são representados por um conjunto de coordenadas, que indicam a sua posição no espaço. Assim, um ponto pode ser localizado por sua latitude e longitude, por exemplo.
 
-3. Como a engenharia de requisitos pode ajudar na redução de custos?
+2) Os pontos podem ser ligados por segmentos, que indicam a distância entre eles.
+
+3) Os pontos podem ser agrupados em formas geométricas, como triângulos, quadrados e círculos.
+
+4) As formas geométricas podem ser

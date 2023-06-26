@@ -25,8 +25,34 @@
             <button type="submit" class="btn btn-primary">Gerar Prova</button>
         </form>
         <div id="result" class="mt-5"></div>
+        <button id="downloadButton" style="display: none;">Download .docx</button>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#examForm').on('submit', function(e) {
+            e.preventDefault();
+
+            const examTopic = $('#examTopic').val();
+            const subtopics = $('#subtopics').val().split(',');
+            const numQuestions = $('#numQuestions').val();
+
+            $.ajax({
+                url: '/generateQuestions',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ examTopic, subtopics, numQuestions }),
+                success: function(data) {
+                    $('#result').html(data.questions.replace(/\n/g, '<br>'));
+                    $('#downloadButton').show(); // Show the download button
+                }
+            });
+        });
+
+        $('#downloadButton').click(function(e) {
+            window.location.href = '/download';
+        });
+    });
+    </script>
 </body>
 </html>

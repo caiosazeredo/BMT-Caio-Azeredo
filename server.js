@@ -2,8 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const path = require('path');
-const officegen = require('officegen');
 const fs = require('fs');
+const officegen = require('officegen');
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,8 +20,7 @@ app.post('/generateQuestions', async function(req, res) {
     const apiUrl = 'https://api.openai.com/v1/completions';
     const model = 'text-davinci-001';
 
-    let doc = officegen('docx');
-    let pObj;
+    let questions = '';
 
     for (let i = 0; i < numQuestions; i++) {
         const prompt = `crie uma questão de prova sobre ${examTopic}, ${subtopics[i % subtopics.length]}`;
@@ -38,18 +37,45 @@ app.post('/generateQuestions', async function(req, res) {
             }
         });
 
-        pObj = doc.createP();
-        pObj.addText(response.data.choices[0].text.trim());
+        questions += response.data.choices[0].text.trim() + '\n';
     }
 
-    let out = fs.createWriteStream('questions.docx');
-    doc.generate(out);
-
-    out.on('close', function () {
-        console.log('Document created successfully');
+    fs.writeFile('questions.txt', questions, (err) => {
+        if (err) throw err;
+        console.log('Questions saved to questions.txt');
     });
 
-    res.send('Document created successfully');
+    res.send({ questions });
+});
+
+app.get('/download', function(req, res) {
+    var docx = officegen('docx');
+    var readFile = fs.createReadStream('questions.txt');
+    var text = '';
+    
+    readFile.on('data', function(chunk) {
+        text += chunk.toString();
+    });
+    
+    readFile.on('end', function() {
+        docx.on('finalize', function() {
+            console.log('Document created successfully');
+        });
+    
+        docx.on('error', function(err) {
+            console.log(err);
+        });
+    
+        var pObj = docx.createP();
+        pObj.addText(text);
+    
+        res.writeHead(200, {
+            'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'Content-disposition': 'attachment; filename=questions.docx'
+        });
+    
+        docx.generate(res);
+    });
 });
 
 const port = 3000;
