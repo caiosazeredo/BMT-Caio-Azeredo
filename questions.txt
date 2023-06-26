@@ -1,4 +1,6 @@
-Qual é a importância da metodologia agil na engenharia de software?
-Uma empresa de software desenvolve um aplicativo para um cliente. Durante o desenvolvimento, o cliente solicita que o aplicativo seja capaz de realizar operações de pagamento. O desenvolvimento do aplicativo é concluído e o cliente testa o aplicativo, encontrando um erro na operação de pagamento.
+Qual é a principal vantagem da metodologia agil para o desenvolvimento de software?
+Uma empresa de software precisa de um novo aplicativo para atender a um novo mercado. O departamento de engenharia de software começa a trabalhar no projeto, mas percebe que não tem a expertise necessária para desenvolver o aplicativo.
 
-O que o desenvolvedor deve fazer para resolver o problema?
+Que tipo de parceria a empresa de software deve procurar para desenvolver o aplicativo?
+
+A empresa de software deve procurar uma parceria com uma empresa de desenvolvimento de software.
