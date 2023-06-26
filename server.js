@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const path = require('path');
+const officegen = require('officegen');
 const fs = require('fs');
 
 const app = express();
@@ -19,7 +20,8 @@ app.post('/generateQuestions', async function(req, res) {
     const apiUrl = 'https://api.openai.com/v1/completions';
     const model = 'text-davinci-001';
 
-    let questions = '';
+    let doc = officegen('docx');
+    let pObj;
 
     for (let i = 0; i < numQuestions; i++) {
         const prompt = `crie uma questão de prova sobre ${examTopic}, ${subtopics[i % subtopics.length]}`;
@@ -36,15 +38,18 @@ app.post('/generateQuestions', async function(req, res) {
             }
         });
 
-        questions += response.data.choices[0].text.trim() + '\n';
+        pObj = doc.createP();
+        pObj.addText(response.data.choices[0].text.trim());
     }
 
-    fs.writeFile('questions.txt', questions, (err) => {
-        if (err) throw err;
-        console.log('Questions saved to questions.txt');
+    let out = fs.createWriteStream('questions.docx');
+    doc.generate(out);
+
+    out.on('close', function () {
+        console.log('Document created successfully');
     });
 
-    res.send(questions);
+    res.send('Document created successfully');
 });
 
 const port = 3000;

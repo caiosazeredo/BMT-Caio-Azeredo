@@ -1,6 +1,6 @@
-Qual é a principal vantagem da metodologia agil para o desenvolvimento de software?
-Uma empresa de software precisa de um novo aplicativo para atender a um novo mercado. O departamento de engenharia de software começa a trabalhar no projeto, mas percebe que não tem a expertise necessária para desenvolver o aplicativo.
+Que características deve ter um bom projeto de software?
+1. Quais são os principais objetivos da engenharia de requisitos?
 
-Que tipo de parceria a empresa de software deve procurar para desenvolver o aplicativo?
+2. Como a engenharia de requisitos pode ajudar na qualidade do software?
 
-A empresa de software deve procurar uma parceria com uma empresa de desenvolvimento de software.
+3. Como a engenharia de requisitos pode ajudar na redução de custos?
